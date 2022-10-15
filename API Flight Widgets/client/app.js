@@ -4,7 +4,7 @@ const getFlight = () => {
   fetch("http://localhost:9080/flights")
     .then((response) => response.json())
     .then((flights) => {
-      console.log(flights);
+      populateTable(flights);
     })
     .catch((err) => console.log(err));
 };
