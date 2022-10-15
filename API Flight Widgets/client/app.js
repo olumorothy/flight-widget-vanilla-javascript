@@ -18,15 +18,29 @@ const populateTable = (flights) => {
     tableIcon.textContent = "✈";
     tableRow.append(tableIcon);
 
-    const fligtDetails = {
+    const flightDetails = {
       time: flight.departing.slice(0, 5),
       destination: flight.destination.toUpperCase(),
       flight: flight.flightNumber.shift(),
       gate: flight.gate,
       remark: flight.status,
     };
-    //use the new object to create table datacell
+    //use the new object to create table data-cell
+    for (const flightDetail in flightDetails) {
+      const tableCell = document.createElement("td");
+      const word = Array.from(flightDetails[flightDetail]);
 
+      for (const [index, letter] of word.entries()) {
+        const letterElement = document.createElement("div");
+
+        setTimeout(() => {
+          letterElement.classList.add("flip");
+          letterElement.textContent = letter;
+          tableCell.append(letterElement);
+        }, 100 * index);
+      }
+      tableRow.append(tableCell);
+    }
     tableBody.append(tableRow);
   }
 };
